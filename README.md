@@ -160,6 +160,9 @@ El Login precarga `kevin.llugcha` / `12345678` cuando se compila en `DEBUG`.
 ### Listado y reproducción de canciones
 ![Canciones](docs/capturas/03-canciones.png)
 
+### Repositorio en GitHub
+![GitHub](docs/capturas/04-github.png)
+
 ## 9. Notas y limitaciones
 
 - El paquete de recursos original solo incluye `bensound-adventure.mp3`. Para que las 10 filas sean reproducibles se copió ese archivo con los nombres `bensound-dreams.mp3`, `bensound-energy.mp3`, `bensound-scifi.mp3` y `bensound-tomorrow.mp3`.
