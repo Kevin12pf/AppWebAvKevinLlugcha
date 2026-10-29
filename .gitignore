@@ -1,0 +1,25 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.csproj.user
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Pp]ackages/
+*.dll
+*.pdb
+*.exe
+
+# IIS Express
+*.applicationhost.config
+
+# Logs
+*.log
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
