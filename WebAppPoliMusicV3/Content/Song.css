@@ -1,0 +1,368 @@
+/* ============================================================
+   PoliMusic · Song.aspx
+   Tema Apple Music (Modo Oscuro)
+   ============================================================ */
+
+:root {
+    --am-bg: #000000;
+    --am-bg-soft: #0a0a0a;
+    --am-panel: #1c1c1e;
+    --am-panel-hover: #2c2c2e;
+    --am-border: #2c2c2e;
+    --am-text: #ffffff;
+    --am-muted: #8e8e93;
+    --am-accent: #FA233B;
+    --am-accent-hover: #d91c30;
+    --am-radius: 16px;
+    --am-radius-sm: 6px;
+    --am-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    --am-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--am-bg);
+    color: var(--am-text);
+    font-family: var(--am-font);
+    font-size: 14px;
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--am-text);
+    text-decoration: none;
+}
+
+.app-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------------------------------------------------------------------
+   Cabecera estilo Apple Music Library
+   ------------------------------------------------------------------ */
+.library-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 24px 10px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #fff;
+}
+
+.header-title {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.library-header h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+}
+
+.subtitle {
+    color: var(--am-muted);
+    font-size: 15px;
+    margin: 0;
+}
+
+/* ------------------------------------------------------------------
+   Banner de usuario (esquina superior derecha)
+   ------------------------------------------------------------------ */
+.user-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border: 1px solid var(--am-border);
+    border-radius: 999px;
+    background: var(--am-panel);
+    backdrop-filter: blur(6px);
+    user-select: none;
+}
+
+.user-banner .user-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--am-accent);
+    box-shadow: 0 0 10px var(--am-accent);
+}
+
+.user-banner .user-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--am-muted);
+}
+
+.user-banner .user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* ------------------------------------------------------------------
+   Panel de la biblioteca
+   ------------------------------------------------------------------ */
+.library-panel {
+    max-width: 1100px;
+    margin: 0 auto 32px;
+    width: 100%;
+    padding: 0 24px;
+}
+
+.panel-wrap {
+    border-radius: var(--am-radius);
+    background: var(--am-panel);
+    border: 1px solid var(--am-border);
+    overflow: hidden;
+}
+
+/* ------------------------------------------------------------------
+   Tabla tipo playlist de Apple Music (asp:GridView sin estilos por defecto)
+   ------------------------------------------------------------------ */
+.song-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: transparent;
+}
+
+.song-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--am-muted);
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--am-border);
+    vertical-align: middle;
+    background: transparent;
+}
+
+.song-table td {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--am-border);
+    vertical-align: middle;
+    color: #fff;
+    font-size: 14px;
+    background: transparent;
+}
+
+.song-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.song-table tbody tr:hover td {
+    background: var(--am-panel-hover);
+    transition: background 0.12s ease;
+}
+
+/* Columnas */
+.col-index {
+    width: 34px;
+    color: var(--am-muted);
+    font-size: 13px;
+}
+
+.col-cover {
+    width: 66px;
+    text-align: center;
+}
+
+.col-cover img {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--am-radius-sm);
+    object-fit: cover;
+    background: #0a0a0a;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.col-title {
+    font-weight: 600;
+    color: #fff;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+}
+
+.col-artist,
+.col-album {
+    color: var(--am-muted);
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.col-duration {
+    text-align: right;
+    color: var(--am-muted);
+    font-size: 13px;
+    white-space: nowrap;
+    width: 56px;
+}
+
+.col-player {
+    width: 230px;
+    text-align: right;
+}
+
+/* ------------------------------------------------------------------
+   Reproductor de audio HTML5 personalizado para tema oscuro
+   ------------------------------------------------------------------ */
+.apple-audio {
+    width: 170px;
+    height: 30px;
+    border-radius: var(--am-radius-sm);
+    background: #0a0a0a;
+    border: 1px solid var(--am-border);
+    accent-color: var(--am-accent);
+    /* Filtro para encajar los controles nativos en el modo oscuro */
+    filter: invert(0.84) hue-rotate(165deg) saturate(1.15) brightness(0.95) contrast(0.94);
+    transition: filter 0.2s ease, transform 0.1s ease;
+    vertical-align: middle;
+}
+
+.apple-audio:hover {
+    filter: invert(0.78) hue-rotate(165deg) saturate(1.2) brightness(1) contrast(1);
+    transform: translateY(-1px);
+}
+
+.apple-audio::-webkit-media-controls-panel {
+    background: #0a0a0a !important;
+    border-radius: var(--am-radius-sm);
+}
+
+.apple-audio::-webkit-media-controls-current-time-display,
+.apple-audio::-webkit-media-controls-time-remaining-display {
+    color: #fff !important;
+    font-size: 11px;
+    font-family: var(--am-font);
+    opacity: 0.85;
+}
+
+/* ------------------------------------------------------------------
+   Mini reproductor fijo inferior (estilo Apple Music)
+   ------------------------------------------------------------------ */
+.mini-player {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 24px;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.94), rgba(0, 0, 0, 0.8));
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--am-border);
+    color: #fff;
+    font-size: 13px;
+    display: none;
+}
+
+.mini-player.visible {
+    display: flex;
+}
+
+.mini-player .label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--am-muted);
+}
+
+.mini-player .title {
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px;
+}
+
+/* ------------------------------------------------------------------
+   Estado reproduciendo
+   ------------------------------------------------------------------ */
+.song-table tbody tr.playing td {
+    background: rgba(250, 35, 59, 0.10);
+}
+
+.song-table tbody tr.playing .col-title {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ------------------------------------------------------------------
+   Vacío / Responsive
+   ------------------------------------------------------------------ */
+.song-table td[colspan] {
+    padding: 40px 18px;
+    color: var(--am-muted);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .library-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 30px 16px 10px;
+    }
+    .library-header h1 {
+        font-size: 32px;
+    }
+    .library-panel {
+        padding: 0 16px;
+        margin-bottom: 24px;
+    }
+    .col-artist,
+    .col-album {
+        max-width: 120px;
+    }
+    .col-player {
+        width: 150px;
+    }
+    .col-player .apple-audio {
+        width: 130px;
+    }
+    .mini-player {
+        padding: 10px 16px;
+    }
+    .mini-player .title {
+        max-width: 200px;
+    }
+}
